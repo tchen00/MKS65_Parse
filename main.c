@@ -25,7 +25,7 @@ int main(int argc, char *argv[]){
     printf("Enter a string to be parsed (example: \"ls -a -l\"):\n");
     fgets(str_holder,50,stdin);
       int j;
-      for ( int j = 1; j < strlen(str_holder)-2; j++){
+      for ( j = 1; j < strlen(str_holder)-2; j++){
         str[j-1] = str_holder[j];
       }
   }
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
     str = argv[1];
   }
 
-  printf("-------------------------------\nLooking into string: %s\n", str);
+  printf("----------------------------------------\nLooking through arguments %s\n", str);
 
   char ** arr = parse_args(str);
   int i = 0;
@@ -42,7 +42,8 @@ int main(int argc, char *argv[]){
     i++;
   }
 
-  printf("-------------------------------\nTESTING USING EXECVP:\n");
+  printf("----------------------------------------\nTesting using execvp:\n");
   execvp(arr[0],arr);
+
   return 0;
 }
