@@ -16,6 +16,33 @@ char ** parse_args( char * line ){
   return args;
 }
 
-int main(){
+int main(int argc, char *argv[]){
+  char* str = malloc(50);
+  char* str_holder = malloc(50);
+  // if there is no command line argument
+  if (argc <=  1){
+    // asks user for input
+    printf("Enter a string to be parsed (example: \"ls -a -l\"):\n");
+    fgets(str_holder,50,stdin);
+      int j;
+      for ( int j = 1; j < strlen(str_holder)-2; j++){
+        str[j-1] = str_holder[j];
+      }
+  }
+  else{
+    str = argv[1];
+  }
+
+  printf("-------------------------------\nLooking into string: %s\n", str);
+
+  char ** arr = parse_args(str);
+  int i = 0;
+  while (arr[i]){
+    printf("arr[%d]: %s\n", i, arr[i]);
+    i++;
+  }
+
+  printf("-------------------------------\nTESTING USING EXECVP:\n");
+  execvp(arr[0],arr);
   return 0;
 }
